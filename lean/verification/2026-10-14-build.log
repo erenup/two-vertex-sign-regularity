@@ -1,0 +1,52 @@
+Verification started UTC: 2026-10-14T20:15:56Z
+Source manifest SHA256: ffc41f51840dabb3cd55829e255890a9a1855cf398252959efcb8a16447b65eb
+Snapshotting pinned dependency revisions and library bytes.
+Lean (version 4.34.0-rc2, x86_64-unknown-linux-gnu, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)
+Dependencies: all 9 pinned Git revisions; tracked sources clean.
+PASS compiled IV01.Definitions (-j1 -M12288; fresh object)
+PASS compiled IV01.TP2 (-j1 -M12288; fresh object)
+PASS compiled IV01.Corner (-j1 -M12288; fresh object)
+PASS compiled IV01.RankBounds (-j1 -M12288; fresh object)
+PASS compiled IV01.Anchor (-j1 -M12288; fresh object)
+PASS compiled IV01.InteriorZero (-j1 -M12288; fresh object)
+PASS compiled IV01.Box (-j1 -M12288; fresh object)
+PASS compiled IV01.SchurAlgebra (-j1 -M12288; fresh object)
+PASS compiled IV01.SchurRank (-j1 -M12288; fresh object)
+PASS compiled IV01.SchurClosure (-j1 -M12288; fresh object)
+PASS compiled IV01.RankMinors (-j1 -M12288; fresh object)
+PASS compiled IV01.FixedRectangle (-j1 -M12288; fresh object)
+PASS compiled IV01.DeterminantIdentities (-j1 -M12288; fresh object)
+PASS compiled IV01.FeketeIdentity (-j1 -M12288; fresh object)
+PASS compiled IV01.InverseInterval (-j1 -M12288; fresh object)
+PASS compiled IV01.CheckerMonotone (-j1 -M12288; fresh object)
+PASS compiled IV01.SolidMinors (-j1 -M12288; fresh object)
+PASS compiled IV01.EssentialRank (-j1 -M12288; fresh object)
+PASS compiled IV01.IndexSelection (-j1 -M12288; fresh object)
+PASS compiled IV01.Transpose (-j1 -M12288; fresh object)
+PASS compiled IV01.MinimalBad (-j1 -M12288; fresh object)
+PASS compiled IV01.PivotIndices (-j1 -M12288; fresh object)
+PASS compiled IV01.SchurSetup (-j1 -M12288; fresh object)
+PASS compiled IV01.FixedIndices (-j1 -M12288; fresh object)
+PASS compiled IV01.RankRestriction (-j1 -M12288; fresh object)
+PASS compiled IV01.SchurVanishing (-j1 -M12288; fresh object)
+PASS compiled IV01.FixedCase (-j1 -M12288; fresh object)
+PASS compiled IV01.AdjacentTP2 (-j1 -M12288; fresh object)
+PASS compiled IV01.BoxContinuity (-j1 -M12288; fresh object)
+PASS compiled IV01.OrderTwo (-j1 -M12288; fresh object)
+PASS compiled IV01.Induction (-j1 -M12288; fresh object)
+PASS compiled IV01.FixedAdapter (-j1 -M12288; fresh object)
+PASS compiled IV01.NonfixedPositive (-j1 -M12288; fresh object)
+PASS compiled IV01.NonfixedColumn (-j1 -M12288; fresh object)
+PASS compiled IV01.PositiveExclusion (-j1 -M12288; fresh object)
+PASS compiled IV01.ColumnCompletion (-j1 -M12288; fresh object)
+PASS compiled IV01.NegativeThird (-j1 -M12288; fresh object)
+PASS compiled IV01.NegativeExclusion (-j1 -M12288; fresh object)
+PASS compiled IV01.Statement (-j1 -M12288; fresh object)
+PASS compiled IV01 (-j1 -M12288; fresh object)
+PASS compiled IV01.RankSelection (-j1 -M12288; fresh object)
+'IV01.twoCheckerVertices' depends on axioms: [propext, Classical.choice, Quot.sound]
+Checking dependency libraries remained byte-identical.
+PASS: 41 production modules freshly compiled; fixed source inventory unchanged.
+PASS: transitive axioms exactly propext, Classical.choice, Quot.sound.
+PASS: compiler, pinned dependencies, configuration and helpers unchanged.
+Verification finished UTC: 2026-10-14T20:19:26Z

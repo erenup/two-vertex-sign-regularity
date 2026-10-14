@@ -1,0 +1,53 @@
+{
+  "compiler_sha256": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550",
+  "compiler_version": "Lean (version 4.34.0-rc2, x86_64-unknown-linux-gnu, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)",
+  "dependency_snapshot_sha256": "21a9cc649525d51a13257993a14dbe8f47e2710c62b9fac5a08fa7670bcb6713",
+  "packages": {
+    "Cli": {
+      "artifact_hashes_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "library_artifact_count": 0,
+      "revision": "ab3a82db9fea14cf0fd7f5a2de650f4b534640af"
+    },
+    "LeanSearchClient": {
+      "artifact_hashes_sha256": "01459e27005483deae4fb4a30b19aae2b899578b7646770b4645fe2066193805",
+      "library_artifact_count": 52,
+      "revision": "ba67e212be1197b84c1f1f6299488a10a3002713"
+    },
+    "Qq": {
+      "artifact_hashes_sha256": "3adc2817b17efec772e6e305192f6d38a5f99f546c0c907276d48dcab0608337",
+      "library_artifact_count": 182,
+      "revision": "507746ab8f4b643ccdacb2ec4cdb5853fa9f8ab3"
+    },
+    "aesop": {
+      "artifact_hashes_sha256": "198c1d25e3317618fd6badd5f1a594ee80ee44e21a76cfc104b4e42926cc35e6",
+      "library_artifact_count": 1716,
+      "revision": "18889deb9e83ea7420ef51c160d6f88552e744e3"
+    },
+    "batteries": {
+      "artifact_hashes_sha256": "78beb13749132a128901edff01dbba31daf99109f60b836885ce46f847887645",
+      "library_artifact_count": 2475,
+      "revision": "d54dddc581e08be364c278052863524bff7a99a9"
+    },
+    "importGraph": {
+      "artifact_hashes_sha256": "da71051fbbec09f580baa386db0e70608fdc827c0ca0f03a52bc396de3e83033",
+      "library_artifact_count": 130,
+      "revision": "d8823026ac7ef130c253089d95685f9877b95323"
+    },
+    "mathlib": {
+      "artifact_hashes_sha256": "6aa94a324b7fb9c74c0eac4d2fb2dadc640a53c95ce352aed4a5de104a06a8b1",
+      "library_artifact_count": 108873,
+      "revision": "85e3a25e006c35636f0e53b0e9296caca2685bc0"
+    },
+    "plausible": {
+      "artifact_hashes_sha256": "98f3ba62acbf52a48f7b7d161ae6ef5677ea6c80847453dad42561a2ec298fe2",
+      "library_artifact_count": 169,
+      "revision": "d9598f07b1bc701f1e3aae163d2681c1fd978793"
+    },
+    "proofwidgets": {
+      "artifact_hashes_sha256": "3a248f63fb7306499ec2c9899f8e19c1cdd41e54c54587df4b6b33e1572abb81",
+      "library_artifact_count": 169,
+      "revision": "a8acbfd87375ff4abe14ce09db5b7664d383bc7f"
+    }
+  },
+  "toolchain_library_artifact_count": 15175
+}

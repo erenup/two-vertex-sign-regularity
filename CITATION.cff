@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Author information is TBD."
+type: software
+title: "Two-vertex certification of nonsingular sign-regular matrix intervals"
+authors:
+  - family-names: "TBD"
+license: MIT
+abstract: >-
+  Two checker vertices certify nonsingular sign regularity of an entire
+  real square entrywise matrix interval, in every positive dimension
+  and for every signature. Includes the written proof, a complete Lean
+  proof, and exact supporting checks. The manuscript license is TBD.

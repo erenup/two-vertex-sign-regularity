@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+.venv/
+paper/build/
+lean/.lake/
+lean/.audit-build*/

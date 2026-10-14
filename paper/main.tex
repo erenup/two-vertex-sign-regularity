@@ -1,0 +1,1329 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype,booktabs,tikz}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\hypersetup{pdftitle={Two-vertex certification of nonsingular sign-regular matrix intervals},pdfauthor={[Authors to be decided]}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\K}{\mathcal K}
+\newcommand{\chle}{\leq_{\mathrm c}}
+\newcommand{\one}{\mathbf 1}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\ri}{ri}
+\newcommand{\cornerdiagram}[3]{%
+  \begin{tikzpicture}[x=.58cm,y=-.58cm,font=\scriptsize]
+  \fill[blue!12] #2 rectangle #3;
+  \draw (0,0) rectangle (4,4);
+  \draw[dashed,gray] (1.2,1.2) rectangle (2.8,2.8);
+  \foreach \x in {1.2,2.8}{\foreach \y in {1.2,2.8}{\fill (\x,\y) circle (2pt);}}
+  \node at (1.2,-.35) {$k$}; \node at (2.8,-.35) {$\ell$};
+  \node at (-.35,1.2) {$i$}; \node at (-.35,2.8) {$j$};
+  \node at (2,4.55) {#1};
+  \end{tikzpicture}}
+\title{Two-vertex certification of nonsingular\ sign-regular matrix intervals}
+\author{[Authors to be decided]}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+For every positive integer $n$ and every signature
+$\eps\in\{-1,1\}^n$, we prove that a real square entrywise matrix box
+consists entirely of nonsingular sign-regular matrices with signature
+$\eps$ if and only if its two checker vertices have that property.
+Zero minors of every proper order and fixed entries of both checker
+parities are allowed. This proves the general interval conjecture
+stated by Garloff, Adm, and Titi in 2016. The proof uses induction on
+minor order. A first wrong-sign minor of minimal span forces a
+rank-deficient rectangle whose rank bound persists throughout the box.
+Independent entry variation then produces an essential row or column.
+Signed Schur complements and rank-one corner structure exclude these
+variations; a fixed rectangle is excluded by a common corner and an
+affine midpoint argument.
+\end{abstract}
+
+\section{The main theorem and its context}\label{sec:intro}
+
+For increasing index sets $I,J$ of equal cardinality, write $X[I,J]$
+for the corresponding submatrix, with its rows and columns in increasing
+order. A real $n\times n$ matrix $X$ is \emph{sign regular with
+signature} $\eps=(\eps_1,\ldots,\eps_n)\in\{-1,1\}^n$ if
+\begin{equation}\label{eq:sr}
+  \eps_k\det X[I,J]\geq0
+  \qquad (|I|=|J|=k,\ 1\leq k\leq n).
+\end{equation}
+Thus zero minors are allowed. Strict sign regularity requires strict
+inequalities in~\eqref{eq:sr}. Nonsingular sign regularity requires
+\eqref{eq:sr} and $\det X\neq0$.
+
+Let $L,U\in\R^{n\times n}$ satisfy $L\leq U$ entrywise. Define the
+\emph{checker vertices} of the entrywise box $[L,U]$ by
+\begin{equation}\label{eq:vertices}
+ A^-_{ij}=\begin{cases}L_{ij},&i+j\text{ even},\\U_{ij},&i+j\text{ odd},\end{cases}
+ \qquad
+ A^+_{ij}=\begin{cases}U_{ij},&i+j\text{ even},\\L_{ij},&i+j\text{ odd}.
+ \end{cases}
+\end{equation}
+
+\begin{theorem}\label{thm:main}
+Let $n\geq1$, let $\eps\in\{-1,1\}^n$, and let $L,U\in\R^{n\times n}$
+satisfy $L\leq U$. The following statements are equivalent:
+\begin{enumerate}
+\item[(i)] Every $X\in[L,U]$ is nonsingular and sign regular with signature $\eps$.
+\item[(ii)] Both matrices $A^-$ and $A^+$ in~\eqref{eq:vertices} are nonsingular
+and sign regular with signature $\eps$.
+\end{enumerate}
+\end{theorem}
+
+The implication from (i) to (ii) follows because the two vertices belong
+to the box. The content of the theorem is the converse, with no restriction
+on the positions of fixed entries or vanishing proper minors. In
+particular, a fixed entry need not have the same checker parity as every
+other fixed entry.
+
+\subsection{Earlier interval results}
+
+The two-vertex interval property for strictly sign-regular matrices is
+classical. Garloff~\cite{Garloff1982} established this property and a
+weak-sign version under a restriction on fixed positions: all fixed
+entries must have even index sum, or all must have odd index sum.
+The latter includes boxes without fixed entries; see also
+\cite[Theorem~3.1]{Survey2016} and
+\cite[Theorems~3.2--3.3]{AdmGarloff2026}.
+
+Garloff's 1982 conjecture for nonsingular totally nonnegative matrices
+was proved by Adm and Garloff~\cite[Theorem~3.6]{AdmGarloff2013}.
+Here total nonnegativity means that every minor is nonnegative.
+Their proof uses the Cauchon algorithm, and their Theorem~3.4 also
+preserves a common zero/nonzero pattern of all minors. Earlier special
+cases included almost totally positive
+matrices~\cite{Garloff2003}. Related singular cases require additional
+conditions: see \cite[Corollaries~3.7--3.8]{AdmGarloff2013} and the
+rank and independence hypotheses in~\cite{Relax2020}.
+
+Adm and Garloff~\cite{AdmGarloff2016} proved the interval property for
+nonsingular almost strictly sign-regular matrices and for nonsingular
+tridiagonal sign-regular matrices of a common signature. They also treated
+totally nonpositive matrices and related signatures. Further signatures,
+including those of matrices with nonnegative proper minors and negative
+determinant, were treated in~\cite{AdmGarloff2021}; see
+\cite[IP~2.8--2.9]{Survey2021}. Hassuneh, Adm, and
+Garloff~\cite{HassunehAdmGarloff2025} considered matrices with
+nonpositive proper minors and positive determinant. Some of those
+results retain a strict condition on a corner entry. The resulting
+lists involve eight period-four signatures and their final-sign
+reversals. The survey~\cite{AdmGarloff2026} records the coverage of
+small orders together with the relevant strict-entry qualifications.
+
+The general statement is Conjecture~3.1 of Garloff, Adm, and
+Titi~\cite[p.~7]{Survey2016}: nonsingular sign-regular matrices with a
+fixed signature should possess the interval property. This general
+conjecture is distinct from the totally nonnegative conjecture already
+settled in~\cite{AdmGarloff2013}.
+
+There are general tests using more vertices. For an $m\times n$ box,
+write
+\[
+ A_c=\tfrac12(L+U),\qquad \Delta=\tfrac12(U-L).
+\]
+Adm and Garloff~\cite[Theorem~3.1]{AdmGarloff2025} proved that the box
+is sign regular with a prescribed signature if and only if all matrices
+\begin{equation}\label{eq:manyvertices}
+ A_c-\diag(y)\Delta\diag(z),
+ \qquad y\in\{-1,1\}^m,\quad z\in\{-1,1\}^n,
+\end{equation}
+have that signature. There are at most $2^{m+n-1}$ distinct matrices
+in~\eqref{eq:manyvertices}. Their argument uses variation diminution;
+for related single-vector characterizations and interval-hull results,
+see~\cite{ChoudhuryKannanKhare2021,ChoudhuryYadav2025}.
+The January 2026 survey~\cite{AdmGarloff2026} explicitly leaves open
+whether, in the square nonsingular case, the larger vertex family can
+be reduced to the two checker vertices. Theorem~\ref{thm:main} gives
+that reduction.
+
+Two sufficient conditions in the public September 2026 manuscripts of
+Holden are closer to the boundary cases addressed here.
+Theorem~G of~\cite{HoldenGraph2026} assumes an acyclic directed graph
+of nonzero fixed entries and confines fixed zero entries to one checker
+parity. A positive diagonal scaling then reduces to the older
+fixed-parity result. Theorem~V of~\cite{HoldenFive2026} assumes no fixed
+zero entries and requires every fully fixed adjacent $2\times2$ block
+to be nonsingular. It controls order-three minors in every dimension
+and proves the full conclusion at order five. The unconditional
+order-two reduction in~\cite{HoldenTwo2026}, together with the
+inverse-positive reduction in~\cite{HoldenGraph2026}, supplies useful
+starting points. We include proofs of both reductions below. The higher
+orders are treated without the additional hypotheses in those manuscripts.
+
+\subsection{The boundary obstruction}
+
+The main issue is compatibility with the box. A nonsingular
+sign-regular matrix can be approximated by strictly sign-regular
+matrices with the same signature. Approximating the two checker
+vertices separately, however, does not ensure that the approximants
+remain checker-comparable in a way that yields the original interval
+conclusion. This difficulty is described explicitly
+in~\cite{AdmGarloff2026}.
+
+The proof below treats zero minors directly. Its determinant identities,
+inverse-positive arguments, and rank factorizations are classical.
+The corner structure is related to the shadow property for totally
+nonnegative matrices; see~\cite[Lemma~1.2]{AdmGarloff2013} and the
+background in~\cite{FallatJohnson2011,Pinkus2010}. We use these ideas
+in a form that depends only on the low-order signs visible after Schur
+elimination and that handles both signs of the resulting third-order
+minors.
+
+\section{Notation and proof strategy}\label{sec:notation}
+
+All matrix indices start at $1$. Index sets are always written in
+increasing order when a determinant is taken. For $a\leq b$, write
+$[a,b]=\{a,a+1,\ldots,b\}$ when an integer index set is intended, and
+$[n]=[1,n]$. Complements of index sets are taken in the full row or
+column index set of the matrix under discussion. We put $\eps_0=1$
+and give the empty determinant the value $1$.
+
+Let
+\[
+ D_n=\diag((-1)^1,\ldots,(-1)^n).
+\]
+The \emph{checker order} is defined by
+\[
+ A\chle B\quad\Longleftrightarrow\quad D_nAD_n\leq D_nBD_n.
+\]
+For $A\chle B$, put
+\[
+ \K(A,B)=\{X:A\chle X\chle B\}.
+\]
+This is an entrywise Cartesian box, whose ordinary lower and upper
+bounds need not be $A$ and $B$. For the box in
+Theorem~\ref{thm:main}, they are the checker vertices $A=A^-$ and
+$B=A^+$. A coordinate is \emph{fixed} if $A_{ij}=B_{ij}$ and
+\emph{free} otherwise. A matrix lies in $\ri\K$ if each free
+coordinate lies strictly between its two bounds. Thus relative interior
+is taken in the affine space of the actual box, including when some or
+all coordinates are fixed.
+
+A \emph{solid} minor uses consecutive rows and consecutive columns.
+An \emph{adjacent two-minor} is a solid minor of order two.
+We use $\mathrm{TN}_2$ to mean a nonnegative matrix whose two-minors
+are all nonnegative; it carries no strictness assertion.
+
+Here is the structure of the proof. Section~\ref{sec:initial} proves
+nonsingularity throughout the box and the prescribed signs through
+order two. In particular, it also gives the cofactor signs of order
+$n-1$. Sections~\ref{sec:corners} and~\ref{sec:schur} establish the
+low-order corner and Schur-complement facts used in the induction.
+Section~\ref{sec:rank} shows that a wrong-sign minor of minimal span
+forces a permanent rank bound on an interior-column rectangle. If the
+rectangle has a free entry, an essential row or column appears.
+Section~\ref{sec:induction} rules out such a line by Schur elimination,
+and treats a fixed rectangle using a common rank-one corner and the
+midpoint of the box. Examples and scope remarks conclude the paper.
+
+The reductions already control orders $1,2,n-1,n$. These exhaust the
+minor orders for $n\leq4$; at $n=5$, order three is the first remaining
+order. The induction treats all subsequent orders by the same argument.
+
+\section{Initial interval facts}\label{sec:initial}
+
+\subsection{Nonsingularity and cofactor signs}
+
+\begin{lemma}\label{lem:inverse}
+Suppose $P,Q\in\R^{n\times n}$ are nonsingular, $P\leq Q$, and
+$P^{-1},Q^{-1}\geq0$. Every $C$ with $P\leq C\leq Q$ is
+nonsingular and satisfies $C^{-1}\geq0$.
+\end{lemma}
+
+\begin{proof}
+Set
+\[
+ v=P^{-1}\one,\qquad w=Q^{-1}\one,\qquad T=Q^{-1}(Q-P).
+\]
+Every row of an invertible nonnegative matrix has a positive entry,
+so $v,w$ are strictly positive. Moreover, $T\geq0$ and
+$Tv=v-w<v$. In the weighted maximum norm
+$\|x\|_v=\max_i|x_i|/v_i$, the norm of a nonnegative matrix satisfies
+\[
+ \|T\|_v=\max_i\frac{(Tv)_i}{v_i}<1.
+\]
+For $P\leq C\leq Q$, let $E=Q^{-1}(Q-C)$. Then
+$0\leq E\leq T$, and hence $\|E\|_v<1$. Since $C=Q(I-E)$,
+the Neumann series yields
+\[
+ C^{-1}=\left(\sum_{s=0}^{\infty}E^s\right)Q^{-1}\geq0.
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:nonsingular}
+Suppose $A\chle B$ are nonsingular sign-regular matrices with
+signature $\eps$. Every $X\in\K(A,B)$ is nonsingular, its determinant
+has sign $\eps_n$, and its $(n-1)$-minors have their prescribed weak
+sign $\eps_{n-1}$.
+\end{corollary}
+
+\begin{proof}
+The assertion about order zero is interpreted by the empty determinant
+when $n=1$. Put $\delta=\eps_{n-1}\eps_n$. The inverse cofactor formula
+gives
+\[
+ \delta D_nA^{-1}D_n\geq0,\qquad
+ \delta D_nB^{-1}D_n\geq0.
+\]
+If $\delta=1$, apply Lemma~\ref{lem:inverse} between $D_nAD_n$ and
+$D_nBD_n$. If $\delta=-1$, apply it between $-D_nBD_n$ and
+$-D_nAD_n$. Thus every $X\in\K$ is nonsingular and satisfies
+$\delta D_nX^{-1}D_n\geq0$. Since $\K$ is connected, its nowhere-zero
+determinant has the sign of $\det A$, namely $\eps_n$.
+Applying the inverse cofactor formula once more gives the signs of the
+$(n-1)$-minors.
+\end{proof}
+
+\subsection{Staircase support}
+
+\begin{lemma}\label{lem:staircase}
+Let $Y\in\R^{N\times N}$ be nonsingular and $\mathrm{TN}_2$.
+Every diagonal entry of $Y$ is positive. A zero $Y_{ij}=0$ with $i<j$
+forces $Y_{rc}=0$ for $r\leq i$ and $c\geq j$. A zero below the
+diagonal forces all entries southwest of it to vanish. Consequently,
+the positive entries of every row and column form a nonempty integer
+interval containing its diagonal position. The left and right endpoints
+of the row intervals are nondecreasing with the row index.
+\end{lemma}
+
+\begin{proof}
+Nonsingularity supplies a permutation $\pi$ such that
+$\prod_iY_{i,\pi(i)}>0$. If $\pi$ has an adjacent inversion,
+$\pi(i)>\pi(i+1)$, the two-minor on these rows and columns gives
+\[
+ Y_{i,\pi(i+1)}Y_{i+1,\pi(i)}
+ \geq Y_{i,\pi(i)}Y_{i+1,\pi(i+1)}>0.
+\]
+Swapping these two permutation values therefore preserves positivity
+of the selected product. Repeatedly removing adjacent inversions
+reaches the identity permutation, proving $Y_{ii}>0$ for every $i$.
+
+Suppose $Y_{ij}=0$ with $i<j$. For $c>j$, the two-minor on rows
+$i,j$ and columns $j,c$ reads
+$-Y_{ic}Y_{jj}\geq0$, so $Y_{ic}=0$; the same conclusion for
+$c=j$ is the assumption. If $r<i$ and $c\geq j$, the minor on
+rows $r,i$ and columns $i,c$ now reads
+$-Y_{rc}Y_{ii}\geq0$. This proves northeast zero propagation.
+Transposition proves the southwest assertion.
+
+A row cannot have a zero between two of its positive entries: to the
+right of its positive diagonal such a zero would force the rest of the
+row to vanish, and to the left it would force all earlier entries to
+vanish. Thus its support is an interval containing the diagonal.
+If a lower row began to the left of an earlier row, the southwest
+propagation from a zero just before the earlier row's support would
+give a contradiction. If an earlier row ended to the right of a later
+row, northeast propagation from the later row gives the analogous
+contradiction. Hence both support endpoints are nondecreasing.
+The column assertion follows by transposition.
+\end{proof}
+
+We refer to these support properties as \emph{staircase support}.
+They will also be applied after Schur elimination and a sign
+normalization.
+
+\subsection{The first two minor orders}
+
+\begin{proposition}\label{prop:ordertwo}
+Under the hypotheses of Corollary~\ref{cor:nonsingular}, every matrix
+in $\K(A,B)$ has the prescribed signs at orders one and two.
+\end{proposition}
+
+\begin{proof}
+Order one follows entry by entry. To treat order two, negate all
+matrices if necessary so that their entries are nonnegative. Reversing
+all rows, if necessary, then makes the endpoint two-minors
+nonnegative. Negation multiplies every $k$-minor by $(-1)^k$, and
+row reversal multiplies it by $(-1)^{k(k-1)/2}$. Both operations map a
+checker box to a checker box, possibly exchanging its two vertices.
+We may therefore work with nonnegative endpoints whose two-minors
+are nonnegative.
+
+On consecutive rows and columns, the determinant $ad-bc$ is
+nondecreasing in $a,d$ and nonincreasing in $b,c$. Its two extrema
+over this block of the box occur at the restrictions of the two checker
+vertices. All adjacent two-minors throughout the box are therefore
+nonnegative.
+
+Take $X\in\ri\K$. Its positive support is the union of the endpoint
+supports. Each row's two endpoint support intervals contain its
+diagonal position. Their union is thus an interval; its left endpoint
+is the minimum of two nondecreasing functions of the row, and its
+right endpoint is their maximum. Hence this union also has staircase
+support.
+
+Consider rows $i<j$ and columns $k<\ell$. If either $X_{i\ell}$ or
+$X_{jk}$ is zero, the desired inequality
+\begin{equation}\label{eq:two}
+ X_{ik}X_{j\ell}\geq X_{i\ell}X_{jk}
+\end{equation}
+is immediate. Otherwise every entry of $X$ in
+$[i,j]\times[k,\ell]$ is positive. Indeed, for each intermediate row,
+its left support endpoint is at most that of row $j$, hence at most
+$k$, and its right endpoint is at least that of row $i$, hence at
+least $\ell$. Multiply the adjacent inequalities
+\[
+ X_{rc}X_{r+1,c+1}\geq X_{r,c+1}X_{r+1,c},
+ \qquad i\leq r<j,\quad k\leq c<\ell.
+\]
+All factors that occur on both sides are positive and can be
+cancelled. The resulting inequality is~\eqref{eq:two}.
+Continuity extends it from $\ri\K$ to $\K$. Undoing the
+normalizations proves the stated signs.
+\end{proof}
+
+\section{Low-order corner structure}\label{sec:corners}
+
+In this section $Y\in\R^{N\times N}$ is nonsingular and
+$\mathrm{TN}_2$, with $N\geq3$. When a sign $\eta\in\{-1,1\}$
+is specified, all three-minors of $Y$ have weak sign $\eta$.
+
+\subsection{A positive vanishing two-minor}
+
+\begin{lemma}\label{lem:corner}
+Suppose $i<j$, $k<\ell$, all four entries of
+$Y[\{i,j\},\{k,\ell\}]$ are positive, and its determinant is zero.
+If the three-minors have weak sign $\eta$, one of the following
+rectangles has rank one:
+\begin{align*}
+ \eta=-1:&\quad [1,j]\times[1,\ell]\quad\text{or}\quad[i,N]\times[k,N],\\
+ \eta=+1:&\quad [1,j]\times[k,N]\quad\text{or}\quad[i,N]\times[1,\ell].
+\end{align*}
+For these fixed indices and this value of $\eta$, at most one of the
+two displayed orientations can occur in a nonsingular matrix.
+\end{lemma}
+
+\begin{figure}[htbp]
+\centering
+\begin{tabular}{cccc}
+\cornerdiagram{$\eta=-1$: NW}{(0,0)}{(2.8,2.8)}&
+\cornerdiagram{$\eta=-1$: SE}{(1.2,1.2)}{(4,4)}&
+\cornerdiagram{$\eta=+1$: NE}{(1.2,0)}{(4,2.8)}&
+\cornerdiagram{$\eta=+1$: SW}{(0,1.2)}{(2.8,4)}
+\end{tabular}
+\caption{The four possible rank-one corner orientations. The dots
+mark the positive entries of the vanishing two-minor. Rows increase
+downward and columns to the right. These are schematic orientations;
+the rank bound in the proof excludes one member of the appropriate
+pair for any fixed set of indices.}\label{fig:corners}
+\end{figure}
+
+\begin{proof}
+Divide rows $i$ and $j$ by their positive column-$k$ entries, and
+denote the normalized rows by $u$ and $v$. There is a number $\rho>0$
+such that
+\[
+ u_k=v_k=1,\qquad u_\ell=v_\ell=\rho.
+\]
+Put $d_t=v_t-u_t$. The two-minors of these rows give
+\begin{equation}\label{eq:d-signs}
+ d_t\leq0\ (t<k),\qquad
+ d_t=0\ (k\leq t\leq\ell),\qquad
+ d_t\geq0\ (t>\ell).
+\end{equation}
+For example, inside $[k,\ell]$ the minors using column $k$ give
+$d_t\geq0$ and those using column $\ell$ give $d_t\leq0$.
+For each row $h$, put
+\[
+ q_h=Y_{h\ell}-\rho Y_{hk}.
+\]
+Using the two-minors of columns $k,\ell$ and either anchor row gives
+\begin{equation}\label{eq:q-signs}
+ q_h\leq0\ (h<i),\qquad
+ q_h=0\ (i\leq h\leq j),\qquad
+ q_h\geq0\ (h>j).
+\end{equation}
+Some $q_h$ is nonzero, because columns $k,\ell$ of the nonsingular
+matrix $Y$ are linearly independent.
+
+For $h<i$ or $h>j$ and $t<k$ or $t>\ell$, consider the three-minor
+on these three rows and columns, sorted in increasing order. After
+the two positive row normalizations, subtracting $u$ from $v$ shows
+that its value is
+\begin{equation}\label{eq:dq}
+ -d_tq_h.
+\end{equation}
+For instance, in rows $i,j,h$ and columns $k,\ell,t$, the second row
+becomes $(0,0,d_t)$, whose cofactor is $-q_h$.
+The other three placements give the same sign. The identity does not
+require entries of row $h$ to be positive.
+
+If both an earlier row with $q_h<0$ and a later row with $q_h>0$
+existed, the common weak sign $\eta$ in~\eqref{eq:dq} would force
+$d_t=0$ on both outer column ranges. Together with
+\eqref{eq:d-signs}, this would make the two full rows proportional,
+contradicting nonsingularity. Thus the strict $q_h$ occur on exactly
+one side of the anchor rows.
+
+Suppose first that a later row $h>j$ has $q_h>0$. Then $q_r=0$
+for every $r\leq j$. Consider such a row with $Y_{rk}>0$.
+Its normalized entries in columns $k,\ell$ are again $1,\rho$.
+For $r<j$, apply~\eqref{eq:dq} to the pair of rows $r,j$ and
+the later row $h$. If $\eta=+1$, the identity forces the normalized
+row difference to be nonpositive, while the two-minors make that
+difference nonnegative on columns $t>\ell$. It therefore vanishes
+there and throughout $[k,\ell]$. Thus row $r$ is proportional to
+row $j$ on all columns $t\geq k$. If $\eta=-1$, the same identity
+forces a nonnegative difference, which must vanish for $t<k$ and
+throughout $[k,\ell]$. In this case the rows are proportional on
+all columns $t\leq\ell$. The conclusion for $r=j$ is immediate.
+
+It remains to handle $r\leq j$ with $Y_{rk}=0$. Equation
+\eqref{eq:q-signs} gives $Y_{r\ell}=0$. Staircase support and
+$Y_{jk}>0$ imply $r<k$: a zero at or below the diagonal in column
+$k$ could not have a positive entry farther down that column.
+Also $r<i$, since the column support contains every row between the
+two positive anchor entries. Northeast zero propagation now shows
+that row $r$ is zero in every column $t\geq k$. When $\eta=+1$,
+this is precisely a zero row of the asserted northeast corner.
+When $\eta=-1$, it is impossible: on rows $r,i,h$ and columns
+$r,k,\ell$, the determinant is
+\[
+ Y_{rr}\det Y[\{i,h\},\{k,\ell\}]
+ =Y_{rr}Y_{ik}q_h>0.
+\]
+This contradicts the nonpositive third-order sign.
+Consequently the northeast corner has rank one for $\eta=+1$, and
+the northwest corner has rank one for $\eta=-1$. Its rank is exactly
+one because it contains the positive anchor entries.
+
+If instead the strict $q_h$ occur on the earlier side, reverse both
+rows and columns. A minor of order $s$ acquires the factor
+$(-1)^{s(s-1)}=1$, so its sign is preserved. The preceding argument
+then gives the southwest or southeast corner, respectively.
+
+For uniqueness, any $p\times q$ submatrix of an invertible
+$N\times N$ matrix has rank at least $p+q-N$: adjoining the missing
+rows and columns can increase rank by at most $(N-p)+(N-q)$.
+A rank-one corner therefore has $p+q\leq N+1$. For $\eta=-1$,
+a northwest corner would require $j+\ell\leq N+1$, while a southeast
+corner would require $i+k\geq N+1$. These inequalities cannot both
+hold because $i+k<j+\ell$. For $\eta=+1$, northeast and southwest
+would require $j\leq k$ and $\ell\leq i$, respectively, which are
+also incompatible. These necessary inequalities depend only on the
+anchor indices. They exclude different orientations even in two
+different nonsingular matrices with the same anchor indices and
+third-order sign.
+\end{proof}
+
+\subsection{Zeros when the third-order sign is negative}
+
+\begin{lemma}\label{lem:twozeros}
+If all three-minors of $Y$ are nonpositive, its only possible zero
+entries are $(1,N)$ and $(N,1)$.
+\end{lemma}
+
+\begin{proof}
+The diagonal is positive by Lemma~\ref{lem:staircase}.
+Suppose $Y_{ij}=0$ with $i<j$. The rectangle
+$[1,i]\times[j,N]$ is zero. If $N-j+1\geq2$, select two columns
+with indices at least $j$. They are independent because $Y$ is
+nonsingular. They both vanish on the first $i$ rows, so some
+two-minor on rows greater than $i$ is nonzero, hence positive.
+Append row $i$ and column $i$ to this minor. The resulting sorted
+three-minor is $Y_{ii}$ times the positive two-minor, contradicting
+the assumed sign. Hence $j=N$.
+
+Similarly, if $i\geq2$, two rows with indices at most $i$ are
+independent and both vanish on columns $j,\ldots,N$. Some two-minor
+in columns less than $j$ is therefore positive. Appending row $j$
+and column $j$ gives another positive three-minor. Thus $i=1$.
+Transposition treats zeros below the diagonal.
+\end{proof}
+
+\begin{lemma}\label{lem:middle}
+A $3\times3$ $\mathrm{TN}_2$ matrix having a zero in its middle
+column has nonnegative determinant.
+\end{lemma}
+
+\begin{proof}
+Write the matrix as
+$\left(\begin{smallmatrix}a&b&c\\d&e&f\\g&h&i\end{smallmatrix}\right)$.
+If $e=0$, two-minor nonnegativity gives $bd=fh=0$. Expanding the
+determinant leaves $bfg+cdh\geq0$. If $e>0$ and $b=0$, the
+upper-right two-minor gives $c=0$, and the determinant is
+$a(ei-fh)\geq0$. If $e>0$ and $h=0$, the lower-left two-minor
+gives $g=0$, and the determinant is $i(ae-bd)\geq0$. These cases
+cover every zero in the middle column.
+\end{proof}
+
+\section{Signed Schur complements and rank completion}\label{sec:schur}
+
+\subsection{The ordering signs in Schur elimination}
+
+Let $Z\in\R^{n\times n}$ be nonsingular. Choose row and column
+sets $P,Q$ with $|P|=|Q|=p$ such that $H=Z[P,Q]$ is
+nonsingular. The pivot need not be principal or contiguous.
+In the complementary index orders inherited from $Z$, set
+\begin{equation}\label{eq:schur}
+ S_Z=Z[P^c,Q^c]-Z[P^c,Q]H^{-1}Z[P,Q^c].
+\end{equation}
+For $p=0$, the pivot is empty, its determinant is $1$, and we
+interpret $S_Z=Z$. All subsequent formulas include this case.
+
+For $i\notin P$ and $j\notin Q$, define
+\begin{equation}\label{eq:ordering-signs}
+ \alpha_i=(-1)^{|\{u\in P:u>i\}|},\qquad
+ \beta_j=(-1)^{|\{v\in Q:v>j\}|}.
+\end{equation}
+Let $\widehat S_Z=\diag(\alpha)S_Z\diag(\beta)$.
+
+\begin{lemma}\label{lem:schur}
+For increasing sets $I\subseteq P^c$, $J\subseteq Q^c$ of equal
+cardinality,
+\begin{equation}\label{eq:bordered}
+ \det\widehat S_Z[I,J]
+   =\frac{\det Z[P\cup I,Q\cup J]}{\det H}.
+\end{equation}
+For any $U\supseteq P$ and $V\supseteq Q$, with no requirement
+that $|U|=|V|$,
+\begin{equation}\label{eq:rank-lifting}
+ \rank Z[U,V]
+   =p+\rank S_Z[U\setminus P,V\setminus Q].
+\end{equation}
+In particular, $S_Z$ is nonsingular.
+\end{lemma}
+
+\begin{proof}
+First order the bordered rows by listing $P$ followed by $I$, each
+internally increasing, and do the same with $Q$ followed by $J$.
+Block elimination then gives the determinant
+$\det H\det S_Z[I,J]$. Sorting the combined row list has sign
+$\prod_{i\in I}\alpha_i$: the entry $i$ crosses exactly the pivot
+rows larger than $i$. The column sorting sign is
+$\prod_{j\in J}\beta_j$. Thus
+\[
+ \det H\det S_Z[I,J]
+ =\left(\prod_{i\in I}\alpha_i\right)
+  \left(\prod_{j\in J}\beta_j\right)
+  \det Z[P\cup I,Q\cup J].
+\]
+Multiplying by these two sign products gives~\eqref{eq:bordered}.
+
+For~\eqref{eq:rank-lifting}, perform the same row and column
+permutations and invertible block elimination on $Z[U,V]$.
+The result is block diagonal with blocks $H$ and
+$S_Z[U\setminus P,V\setminus Q]$. Their ranks add. Taking $U=V=[n]$
+proves nonsingularity of $S_Z$.
+\end{proof}
+
+Suppose now that $\det H$ has sign $\eps_p$, and that the relevant
+minors of orders $p+1$ and $p+2$ have their prescribed signs.
+Define
+\begin{equation}\label{eq:normalized-schur}
+ T_Z=(\eps_p\eps_{p+1})\widehat S_Z.
+\end{equation}
+Its entries are nonnegative. Equation~\eqref{eq:bordered} gives its
+order-two sign as
+\[
+ \tau_2=\eps_p\eps_{p+2}.
+\]
+If the order-$(p+3)$ signs are prescribed as well, its order-three
+sign is
+\[
+ \tau_3=\eps_{p+1}\eps_{p+3}.
+\]
+Indeed the scalar factor in~\eqref{eq:normalized-schur} is raised
+to the minor order, and the denominator in~\eqref{eq:bordered}
+has sign $\eps_p$.
+
+If $\tau_2=-1$, reverse all rows of $T_Z$. Row reversal multiplies
+both two-minors and three-minors by $-1$ and preserves entry signs.
+If $\tau_2=+1$, leave the rows in place. We denote the resulting
+matrix by $\mathcal T_Z$. It is nonsingular and $\mathrm{TN}_2$.
+Its prescribed third-order sign, when that order is known, is
+\begin{equation}\label{eq:delta}
+ \delta_p=\eps_p\eps_{p+1}\eps_{p+2}\eps_{p+3}.
+\end{equation}
+The sign bookkeeping can be summarized as follows:
+\begin{center}
+\begin{tabular}{ccl}
+\toprule
+minor order & in $T_Z$ & in $\mathcal T_Z$\\
+\midrule
+$1$ & $+1$ & $+1$\\
+$2$ & $\eps_p\eps_{p+2}$ & $+1$\\
+$3$ & $\eps_{p+1}\eps_{p+3}$ & $\delta_p$\\
+\bottomrule
+\end{tabular}
+\end{center}
+After reversal, row indices and increasing row order refer to the
+new row positions; column order is unchanged.
+
+Only the already established signs at orders $p+1$ and $p+2$ are
+needed to conclude that $\mathcal T_Z$ is $\mathrm{TN}_2$.
+If an interior matrix has a wrong-sign bordered $(p+3)$-minor,
+the corresponding three-minor of $\mathcal T_Z$ has the wrong sign
+relative to~\eqref{eq:delta}. No third-order sign condition on this
+interior Schur matrix is being assumed. Further, the Schur matrices
+of checker-comparable matrices need not themselves be
+checker-comparable; the proof uses no such assertion.
+
+\subsection{Completion of a deficient pivot}
+
+\begin{lemma}\label{lem:rank-obstruction}
+Let $Z\in\R^{n\times n}$ be nonsingular and sign regular with
+signature $\eps$. Let $0\leq p\leq n-3$ and suppose
+$\delta_p=-1$ in~\eqref{eq:delta}. If
+\[
+ \rank Z[R_0,C_0]=t\leq p,\qquad |R_0|\geq p,
+\]
+then
+\begin{equation}\label{eq:zero-area}
+ (|R_0|-p)(|C_0|-t)\leq2.
+\end{equation}
+In particular, a rectangle of rank at most $p$ cannot have either
+of the following sizes:
+\begin{equation}\label{eq:forbidden-sizes}
+ \text{at least }(p+2)\times(p+2),\qquad
+ \text{at least }(p+3)\times(p+1).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Choose $t$ columns in $C_0$ that form a basis of the columns
+restricted to $R_0$. The full rows $R_0$ of the nonsingular matrix
+$Z$ are independent. Hence the matrix $Z[R_0,[n]]$ has rank
+$|R_0|\geq p$, and the selected $t$ columns can be extended to
+$p$ independent columns on $R_0$. Denote their index set by $L$.
+Every added column can be chosen outside $C_0$, because every
+column in $C_0$ already lies in the span of the initial $t$ columns.
+Consequently,
+\[
+ |L|=p,\qquad |L\cap C_0|=t.
+\]
+Choose $p$ rows $P_0\subseteq R_0$ for which $Z[P_0,L]$ is
+invertible. This is the pivot used for Schur elimination; it is
+formed by completing the basis when $t<p$, rather than assuming
+that the original rectangle has rank $p$.
+
+For each column $c\in C_0$, its entries on all of $R_0$ are a
+linear combination of the initial $t$ basis columns. Extending that
+coefficient vector by zeros in the other $p-t$ positions of $L$
+and restricting to $P_0$ shows that these are exactly the coefficients
+computed by $Z[P_0,L]^{-1}Z[P_0,c]$. Thus its Schur residual is
+zero on $R_0\setminus P_0$. The Schur matrix has a zero rectangle
+on
+\[
+ (R_0\setminus P_0)\times(C_0\setminus L)
+\]
+of size $(|R_0|-p)\times(|C_0|-t)$.
+
+The normalized Schur matrix has order $n-p\geq3$, is nonsingular
+and $\mathrm{TN}_2$, and has nonpositive three-minors. Diagonal
+sign changes and row reversal preserve zero entries. By
+Lemma~\ref{lem:twozeros}, this whole Schur matrix has at most two
+zero entries. This proves~\eqref{eq:zero-area}.
+If the first size in~\eqref{eq:forbidden-sizes} occurred, the zero
+rectangle would have at least $2\times2$ entries. For the second
+size it would have at least $3\times1$ entries. Both are impossible.
+
+When $p=0$, necessarily $t=0$; the selected column and row sets
+are empty and no elimination is needed. The rectangle itself is
+zero in the normalized matrix, and exactly the same argument
+applies. This also verifies the empty-pivot case directly.
+\end{proof}
+
+\section{From a bad minor to a permanent rank bound}\label{sec:rank}
+
+Fix $k\geq3$. For the remainder of this section, suppose that the
+endpoint hypotheses hold and that every minor of order at most
+$k-1$ has its prescribed weak sign throughout $\K=\K(A,B)$.
+
+\subsection{Interior zeros of multiaffine minors}
+
+\begin{lemma}\label{lem:permanent}
+If a minor of order at most $k-1$ vanishes at a point of $\ri\K$,
+it vanishes throughout $\K$. Consequently, if a submatrix has rank
+$s\leq k-2$ at a relative-interior point, its rank is at most $s$
+at every point of $\K$.
+\end{lemma}
+
+\begin{proof}
+List the genuinely free scalar coordinates of $\K$ as
+$x_1,\ldots,x_d$, each varying in a nondegenerate interval
+$[a_q,b_q]$. At an interior coordinate let
+$\theta_q=(x_q-a_q)/(b_q-a_q)\in(0,1)$. A determinant is affine
+in each scalar entry separately. Repeated interpolation therefore
+expresses its signed value $f$ as
+\begin{equation}\label{eq:interpolate}
+ f(x)=\sum_{\omega\in\{0,1\}^d}
+ \left(\prod_{q=1}^d\theta_q^{\omega_q}
+            (1-\theta_q)^{1-\omega_q}\right) f(v_\omega),
+\end{equation}
+where $v_\omega$ are all ordinary vertices of the box. Every
+weight is strictly positive, and every signed vertex value is
+nonnegative by the induction hypothesis. If $f(x)=0$, every
+vertex value must vanish. Interpolating again, now at any point of
+the box, shows $f\equiv0$. If $d=0$, the box is a singleton and
+the assertion is immediate.
+
+For the rank assertion, all $(s+1)$-minors of the submatrix vanish
+at the chosen interior point. Their order is at most $k-1$, so
+each vanishes throughout the box. The rank is consequently at
+most $s$ everywhere. If the submatrix has fewer than $s+1$ rows
+or columns, the same conclusion is automatic.
+\end{proof}
+
+In particular, the rank at a relative-interior point is the maximum
+rank of that submatrix over the box whenever this lemma applies.
+The lemma uses all vertices only as an interpolation identity; it
+does not add vertex hypotheses to Theorem~\ref{thm:main}.
+
+\subsection{A three-term determinantal identity}
+
+\begin{lemma}\label{lem:fekete}
+Fix a $k$-element row set $R$ and a $(k-1)$-element subset
+$R'\subset R$. Write a $k$-element column set as
+$J=\{a\}\cup S\cup\{c\}$, where $a=\min J$, $c=\max J$,
+and $|S|=k-2$. Let $a<b<c$ with $b\notin J$. For increasing
+column sets define
+\[
+ \Delta(T)=\det Z[R,T],\qquad d(T)=\det Z[R',T]
+\]
+when the displayed determinants have the appropriate orders.
+Then
+\begin{align}
+ \Delta(J)d(S\cup\{b\})
+ ={}&\Delta((J\setminus\{a\})\cup\{b\})d(S\cup\{a\})\notag\\
+ &+\Delta((J\setminus\{c\})\cup\{b\})d(S\cup\{c\}).
+ \label{eq:fekete}
+\end{align}
+The identity has no rank hypothesis.
+\end{lemma}
+
+\begin{proof}
+Let $T=J\cup\{b\}=\{t_1<\cdots<t_{k+1}\}$ and let $w_s$
+be column $t_s$ restricted to the rows $R$. Laplace expansion of
+a determinant with a repeated row gives the cofactor-kernel
+identity
+\[
+ \sum_{s=1}^{k+1}(-1)^s\Delta(T\setminus\{t_s\})w_s=0.
+\]
+Restrict this vector identity to $R'$. Apply the linear functional
+that appends its argument after the $k-2$ fixed columns indexed
+by $S$ and takes the determinant. The terms indexed by $S$
+vanish because a column is repeated. The other three terms are
+those of $a,b,c$.
+
+For $a$, moving the appended column to the first position crosses
+$k-2$ columns; with its kernel sign the coefficient is
+$(-1)^{k-1}$. If $b$ occupies position $t$ in $T$, then exactly
+$k-t$ members of $S$ are larger than $b$. Its coefficient is
+$(-1)^t(-1)^{k-t}=(-1)^k$. The column $c$ is already appended
+in increasing order and has coefficient $(-1)^{k+1}$. Moving
+the $b$ term to the other side gives~\eqref{eq:fekete}.
+\end{proof}
+
+If the $(k-1)$-minors have a common weak sign and
+$d(S\cup\{b\})\neq0$, equation~\eqref{eq:fekete} expresses
+$\Delta(J)$ as a nonnegative linear combination of two $k$-minors
+with smaller column span. A vanishing denominator is the obstruction
+that will produce a rank bound.
+
+\subsection{Solid minors and minimal span}
+
+\begin{lemma}\label{lem:solid}
+Every solid $k$-minor has its prescribed sign throughout $\K$.
+\end{lemma}
+
+\begin{proof}
+Let the solid row and column intervals start at $i_0,j_0$.
+Use checker coordinates $z_{ij}=(-1)^{i+j}X_{ij}$, which
+increase from $A$ to $B$. For an entry in local row $u$ and
+column $v$ of this block, the derivative of its signed determinant
+with respect to $z_{ij}$ is
+\[
+ \eps_k(-1)^{i+j+u+v}\det X[I\setminus\{i\},J\setminus\{j\}].
+\]
+Here $i=i_0+u-1$ and $j=j_0+v-1$, so the parity factor is the
+constant $(-1)^{i_0+j_0}$. By the induction hypothesis, every
+such derivative has weak sign
+$(-1)^{i_0+j_0}\eps_k\eps_{k-1}$, independent of the chosen
+entry. The signed determinant is thus monotone in one common
+checker direction in all its free coordinates. Its minimum is
+attained at $A$ or at $B$, where it is nonnegative.
+\end{proof}
+
+For a nonempty index set $I$, its span is $\max I-\min I$.
+
+\begin{lemma}\label{lem:rectangle}
+If a wrong-sign $k$-minor occurs in $\K$, it occurs at a matrix
+$M\in\ri\K$. At that matrix choose a wrong-sign $k$-minor
+minimizing the sum of its row and column spans. After transposition
+if necessary, it can be written on rows $R$ and columns
+\[
+ J=\{a\}\cup S\cup\{c\},\qquad |R|=k,\quad |S|=r=k-2,
+\]
+with $C=[a+1,c-1]$ satisfying $|C|\geq r+1$ and
+\begin{equation}\label{eq:rank-r}
+ \rank M[R,C]=r.
+\end{equation}
+The columns $S$ are a basis of this rectangle, and
+$\rank X[R,C]\leq r$ for every $X\in\K$.
+\end{lemma}
+
+\begin{proof}
+A strictly wrong signed value persists under a sufficiently small
+motion toward the midpoint of the box, so it occurs in $\ri\K$.
+There are finitely many minors, so a minimum-span choice exists.
+By Lemma~\ref{lem:solid}, its rows and columns cannot both be
+consecutive. Transposition preserves the hypotheses and the sum
+of the spans; we may arrange that $J$ has a gap. Then
+$|C|\geq k-1=r+1$.
+
+The chosen determinant is nonzero, so the columns $S$ restricted
+to $R$ are independent. Suppose an omitted interior column
+$b\in C\setminus S$ increased their rank to $r+1=k-1$.
+Some $(k-1)$-element row set $R'\subset R$ would then give
+$d(S\cup\{b\})\neq0$ in Lemma~\ref{lem:fekete}.
+The two other $k$-minors in~\eqref{eq:fekete} have the same
+rows and strictly smaller column span. They therefore have the
+correct sign by minimality. All three $(k-1)$-minors have the
+same weak sign, with a nonzero denominator, so the identity
+would give the correct sign for the chosen $k$-minor as well.
+This contradiction proves that every interior column is in the
+span of $S$, establishing~\eqref{eq:rank-r}.
+
+Since $r=k-2$, the permanent-zero lemma applies to all
+$(r+1)$-minors in this rectangle. They vanish throughout the
+box, proving the final rank assertion.
+\end{proof}
+
+\subsection{Independent entry variation and essential lines}
+
+A row or column of a rank-$r$ matrix is \emph{essential} if
+deleting it reduces the rank to $r-1$.
+
+\begin{lemma}\label{lem:essential}
+Let $F$ be a rectangular matrix of rank $r\geq1$.
+If $\rank(F+tE_{ij})\leq r$ for all sufficiently small positive
+and negative $t$, then row $i$ or column $j$ of $F$ is essential.
+\end{lemma}
+
+\begin{proof}
+Every $r$-minor after deletion of row $i$ and column $j$ must
+vanish. Otherwise, adjoining this row and column would give an
+$(r+1)$-minor of $F+tE_{ij}$ whose coefficient of $t$ is, up to
+sign, that nonzero $r$-minor. Its constant term is zero because
+$\rank F=r$, so the rank bound would fail for nonzero small $t$.
+
+Factor $F=UV$, where $U$ has $r$ independent columns and $V$
+has $r$ independent rows. If neither indicated line were essential,
+then deleting row $i$ from $U$ and column $j$ from $V$ would
+leave both ranks equal to $r$. The first factor defines an
+injective map from $\R^r$, and the second a surjective map onto
+$\R^r$. Their product therefore has rank $r$. This is exactly
+the submatrix of $F$ obtained by deleting both lines, in
+contradiction to the vanishing of all its $r$-minors.
+\end{proof}
+
+Apply this lemma to the rectangle of Lemma~\ref{lem:rectangle}.
+If one of its entries is free, the relative-interior matrix $M$
+admits a small two-sided change in that entry alone. The permanent
+rank bound makes Lemma~\ref{lem:essential} applicable. After
+deleting the essential line, the residual rectangle has rank
+$r-1$ at $M$. Its rank is at most $r-1$ throughout $\K$ by
+Lemma~\ref{lem:permanent}, and in particular at both endpoints.
+
+\section{Completion of the induction}\label{sec:induction}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Only (ii)$\Rightarrow$(i) needs proof. The case $n=1$ is immediate,
+and Corollary~\ref{cor:nonsingular} proves nonsingularity throughout
+the box for every $n$. Proposition~\ref{prop:ordertwo} supplies
+the first two minor orders.
+
+Suppose, inductively, that all minor orders through $k-1$ are
+correct throughout $\K$, where $3\leq k\leq n$. Assume that a
+wrong-sign $k$-minor exists and take $M,R,J,S,C,r$ from
+Lemma~\ref{lem:rectangle}. Thus
+\[
+ J=\{a\}\cup S\cup\{c\},\qquad
+ C=[a+1,c-1],\qquad r=k-2,
+\]
+and the rectangle $M[R,C]$ has rank $r$, with at least $r+1$
+columns. Set
+\[
+ p=r-1=k-3,\qquad
+ \delta=\eps_p\eps_{p+1}\eps_{p+2}\eps_{p+3}.
+\]
+We distinguish whether this interior-column rectangle is fixed
+throughout the box.
+
+\medskip\noindent
+\textbf{Case 1: the rectangle is fixed.}
+Choose an invertible $p\times p$ pivot $H=M[P,Q]$ with
+$P\subset R$ and $Q\subset S$. Such a pivot exists because
+$M[R,S]$ has rank $r>p$; when $p=0$, choose the empty pivot.
+The pivot and every entry in $R\times C$ are fixed throughout
+$\K$.
+
+Using these same pivot positions, diagonal signs, and row reversal,
+form the normalized Schur matrices
+$\mathcal T_A,\mathcal T_B,\mathcal T_M$ of
+Section~\ref{sec:schur}. They are nonsingular and
+$\mathrm{TN}_2$. The endpoints have weak third-order sign
+$\delta$. The bad $k$-minor becomes a three-minor of
+$\mathcal T_M$ with the wrong sign relative to $\delta$.
+Its columns are $a,q,c$, where $q$ is the unique element of
+$S\setminus Q$, and its three rows are those of $R\setminus P$
+in the order after any row reversal.
+
+On these three rows and all columns of $C\setminus Q$, the
+three Schur matrices share one fixed rank-one block. Every term
+of the elimination formula for this block uses only entries in
+$R\times C$, so it is fixed. The rank identity
+\eqref{eq:rank-lifting} gives rank $r-p=1$.
+Column $q$ is nonzero: applying the same rank identity to
+$M[R,S]$ shows that its single residual column has rank one.
+There are at least two columns in $C\setminus Q$, and the
+surviving columns $a,c$ lie on opposite sides of all of them in
+the full Schur column order.
+
+We claim that the shared block contains at least two columns
+positive on all three selected rows. If $\delta=-1$, no interior
+column of either endpoint Schur matrix can contain a zero, by
+Lemma~\ref{lem:twozeros}: its only possible zero entries occur
+in the first and last columns. Thus every column of the block
+is positive on these rows.
+
+If $\delta=+1$, the bad three-minor of $\mathcal T_M$ is
+negative. Lemma~\ref{lem:middle} forces its middle column $q$
+to be positive on all three selected rows. Every other nonzero
+column of the shared nonnegative rank-one block is a positive
+multiple of this column. If no second nonzero column existed,
+choose another column $b\in C\setminus Q$. It is zero on all
+three selected rows. Staircase support then forces these rows
+to be zero at $a$ when $b<q$, or at $c$ when $b>q$: in a row
+support interval, a zero lying to one side of a positive entry
+excludes every farther column on that side. Either conclusion
+would make the target three-minor zero, a contradiction. This
+proves the claim in both signs.
+
+Choose column $q$ and a second positive column of the fixed
+block. Together with the first and last of the three selected
+rows, they form a positive vanishing two-minor at both endpoints.
+Lemma~\ref{lem:corner} puts this anchor in a rank-one corner.
+The orientation is the same at $A$ and $B$: its necessary index
+inequalities exclude one of the two possible orientations for
+both matrices. This corner contains all three selected rows
+and reaches one column boundary. It therefore contains the
+same outer column $d\in\{a,c\}$ at both endpoints, as well
+as column $q$.
+
+Lift the rank bound through the common pivot. The submatrix
+on $R\times(S\cup\{d\})$ has just these three residual rows
+and the residual columns $q,d$. It follows that
+\begin{equation}\label{eq:fixed-rank}
+ \rank A[R,S\cup\{d\}]\leq p+1=r,
+ \qquad
+ \rank B[R,S\cup\{d\}]\leq r.
+\end{equation}
+This endpoint statement must now be transferred to $M$.
+Every $(r+1)$-minor in~\eqref{eq:fixed-rank} vanishes at both
+endpoints. All its columns except possibly $d$ lie in the fixed
+set $S$. Hence its determinant is affine in the entries of its
+one remaining column $d$. It vanishes at the midpoint
+$(A+B)/2$. Minors omitting $d$ are fixed and already zero.
+
+The midpoint belongs to $\ri\K$, including when some entries
+are fixed. The order $r+1=k-1$ is covered by the induction
+hypothesis. Lemma~\ref{lem:permanent} therefore makes all these
+midpoint zeros permanent throughout $\K$, and in particular
+\[
+ \rank M[R,S\cup\{d\}]\leq r.
+\]
+Adjoining the other outer column raises rank by at most one.
+The purported bad $k$-minor consequently has rank at most
+$r+1=k-1$, contradicting its nonzero determinant.
+The affine midpoint step is essential here: endpoint zeros of
+an arbitrary multiaffine determinant alone do not imply an
+interior zero.
+
+\medskip\noindent
+\textbf{Case 2: the rectangle has a free entry and $\delta=-1$.}
+Lemma~\ref{lem:essential} supplies an essential row or column.
+After its deletion, the rank is at most $r-1=p$ at each
+endpoint. Deleting a row leaves dimensions
+\[
+ (k-1)\times|C|\ \geq\ (p+2)\times(p+2),
+\]
+where the inequality compares both dimensions. Deleting a
+column leaves dimensions
+\[
+ k\times(|C|-1)\ \geq\ (p+3)\times(p+1).
+\]
+Both violate Lemma~\ref{lem:rank-obstruction} at either
+nonsingular sign-regular endpoint. This case is impossible,
+even if the residual endpoint rank is strictly less than $p$.
+
+\medskip\noindent
+\textbf{Case 3: the rectangle has a free entry and $\delta=+1$.}
+Again select an essential row or column. Schur elimination in
+this case is performed at $M$ alone; its pivot is not required
+to be fixed or to remain invertible at the endpoints.
+
+Suppose first that row $i$ is essential. The columns $S$ span
+the whole rectangle, so their restriction to $R\setminus\{i\}$
+has rank $r-1=p$. Choose a nonsingular pivot on rows
+$P\subset R\setminus\{i\}$ and columns $Q\subset S$ of
+size $p$. On these remaining rows, every interior column lies
+in the span of the pivot columns. Its Schur residual is
+therefore zero outside the pivot rows. Among the three rows
+of the target three-minor, the two other than $i$ are zero
+in its middle column, namely the unique column in
+$S\setminus Q$. The normalized Schur matrix is
+$\mathrm{TN}_2$. Lemma~\ref{lem:middle} excludes the negative
+determinant that a wrong sign relative to $\delta=+1$ would
+require.
+
+Suppose instead that column $j$ is essential. Every column
+basis $S$ of the rectangle contains $j$, since deletion of
+$j$ lowers rank. Put $Q=S\setminus\{j\}$ and choose $p$
+rows $P\subset R$ giving an invertible pivot. The columns
+$Q$ form a basis after deletion of $j$, so every other
+interior column has zero Schur residual on the three
+remaining selected rows. At least one such zero column
+$b$ remains: $|C|\geq r+1=p+2$, while only $p$ pivot
+columns and column $j$ have been excluded.
+
+The target columns are $a,j,c$. A negative three-minor would
+force column $j$ to be positive on all three selected rows by
+Lemma~\ref{lem:middle}. The zero column $b$ and staircase
+support then force column $a$ to be zero on these rows if
+$b<j$, and column $c$ to be zero if $b>j$. The target
+determinant is zero, a contradiction.
+
+All three cases are excluded. Hence no wrong-sign $k$-minor
+occurs in $\ri\K$. A strictly wrong value at a boundary point
+would persist toward the midpoint, so none occurs on the
+boundary either. This completes the induction. All prescribed
+minor signs hold throughout $\K$, and its nonsingularity was
+proved separately in Corollary~\ref{cor:nonsingular}.
+\end{proof}
+
+\section{Exact examples}\label{sec:examples}
+
+The first three examples isolate the roles of nonsingularity,
+the common signature, and the choice of vertices. The last gives a
+four-parameter degenerate box outside the preceding fixed-entry
+criteria. All entries and all checks in this section are rational.
+
+\begin{example}[Singular endpoints]\label{ex:singular}
+Consider
+\[
+ A=\begin{pmatrix}0&0&1\\0&0&0\\0&0&0\end{pmatrix},
+ \qquad
+ B=\begin{pmatrix}1&0&1\\0&0&0\\1&0&1\end{pmatrix}.
+\]
+Both are nonnegative of rank one, so every minor of order at
+least two is zero and both matrices are totally nonnegative.
+They satisfy $A\chle B$, since every differing position has
+even index sum. At their midpoint $M=(A+B)/2$, however,
+\[
+ \det M[\{1,3\},\{1,3\}]
+ =\det\begin{pmatrix}1/2&1\\1/2&1/2\end{pmatrix}
+ =-\frac14.
+\]
+Thus singular checker vertices need not even preserve the weak
+minor-sign conclusion. For every $n\geq3$, replacing $A,B$ by
+$A\oplus I_{n-3},B\oplus I_{n-3}$ gives the same failure in
+dimension $n$. A block-diagonal direct sum of totally nonnegative
+matrices is totally nonnegative: each nonzero minor is a product
+of minors in corresponding diagonal blocks, without an index
+permutation. The displayed bad minor persists in the first block.
+\end{example}
+
+\begin{example}[A common signature is necessary]\label{ex:signature}
+The matrices
+\[
+ A=\begin{pmatrix}1&2\\2&1\end{pmatrix},\qquad
+ B=\begin{pmatrix}2&1\\1&2\end{pmatrix}
+\]
+are checker-comparable and strictly sign regular. Their signatures
+are $(+1,-1)$ and $(+1,+1)$, respectively, because their entries
+are positive and their determinants are $-3$ and $3$.
+Their midpoint has every entry equal to $3/2$ and is singular.
+This is an example in dimension two of the all-dimensional
+theorem. Unlike total nonnegativity, arbitrary sign regularity
+with a prescribed signature is not automatically preserved by
+adjoining an identity block, so no such lifting is used here.
+\end{example}
+
+\begin{example}[Ordinary interval bounds]\label{ex:ordinary}
+Let
+\[
+ L=\begin{pmatrix}1&2\\2&5\end{pmatrix},\qquad
+ U=\begin{pmatrix}2&3\\3&6\end{pmatrix}.
+\]
+These are ordinary entrywise lower and upper bounds, and both
+are strictly totally positive: their determinants are $1$ and $3$.
+Nevertheless, the permitted matrix
+\[
+ X=\begin{pmatrix}1&3\\3&5\end{pmatrix}\in[L,U]
+\]
+has determinant $-4$. The ordinary lower and upper bounds
+cannot replace the checker vertices in Theorem~\ref{thm:main}.
+For $n\geq2$, the corresponding direct sums with $I_{n-2}$
+give nonsingular totally nonnegative lower and upper bounds
+with the same bad two-minor at an interior or boundary choice.
+\end{example}
+
+\begin{example}[A degenerate four-parameter box]\label{ex:degenerate}
+Put
+\[
+ (\lambda_0,\lambda_1,\lambda_2,\lambda_3,\lambda_4)
+ =\left(1,\frac1{10},\frac1{100},-\frac1{1000},-\frac1{10000}\right),
+ \qquad
+ q=\frac{500618646037}{19352067067828800},
+\]
+and define a rational $5\times5$ matrix by
+\begin{equation}\label{eq:seed}
+ W_{ij}=\sum_{s=0}^4\lambda_s\left(\frac{ij}{36}\right)^s
+             -q\,\mathbf 1_{\{i=j=1\}},
+ \qquad 1\leq i,j\leq5.
+\end{equation}
+This seed appears in the example in
+\cite[Section~6]{HoldenGraph2026}. It is nonsingular and its
+signature is
+\[
+ (+1,+1,+1,-1,+1).
+\]
+Its only zero minor is the
+order-three minor on rows and columns $\{1,2,3\}$.
+
+With $D_5=\diag(-1,1,-1,1,-1)$, let
+\begin{equation}\label{eq:example-box}
+ H=-D_5W^{-1}D_5,\qquad
+ E=\begin{pmatrix}
+ 1&-1&0&0&0\\-1&1&0&0&0\\
+ 0&0&0&0&0\\0&0&0&0&0\\0&0&0&0&0
+ \end{pmatrix},\qquad
+ A=H,\quad B=H+\tfrac18 E.
+\end{equation}
+Then $A\chle B$. The four entries in the northwest $2\times2$
+block vary independently, each over an interval of width $1/8$;
+all other entries are fixed. Every entry of both endpoints is
+strictly positive. Exact evaluation gives the counts in
+Table~\ref{tab:example}, at \emph{each} endpoint. The unique
+zero minor is
+\begin{equation}\label{eq:zero-example}
+ \det A[\{4,5\},\{4,5\}]
+ =\det B[\{4,5\},\{4,5\}]=0.
+\end{equation}
+Thus both endpoints are nonsingular and have signature
+\[
+ \eps=(+1,+1,-1,+1,-1).
+\]
+Theorem~\ref{thm:main} applies to the whole four-parameter box.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{rrrr}
+\toprule
+Minor order & Positive & Zero & Negative\\
+\midrule
+1 & 25 & 0 & 0\\
+2 & 99 & 1 & 0\\
+3 & 0 & 0 & 100\\
+4 & 25 & 0 & 0\\
+5 & 0 & 0 & 1\\
+\bottomrule
+\end{tabular}
+\caption{Exact minor counts at each checker vertex in
+Example~\ref{ex:degenerate}. There are $251$ nonempty minors
+in each $5\times5$ matrix.}\label{tab:example}
+\end{table}
+
+Here is why the earlier stated criteria do not cover this example.
+The fixed positions $(3,3)$ and $(3,4)$ have different checker
+parities, so the fixed-parity criterion does not apply.
+The directed graph in~\cite{HoldenGraph2026} has an edge
+$C_j\to R_i$ at a fixed positive entry of even index sum and
+an edge $R_i\to C_j$ at one of odd index sum. It contains the
+fixed-entry cycle
+\[
+ R_3\longrightarrow C_2\longrightarrow R_4
+      \longrightarrow C_3\longrightarrow R_3.
+\]
+Thus Theorem~G's acyclicity hypothesis fails. The adjacent
+$2\times2$ block in~\eqref{eq:zero-example} is fully fixed
+and singular, so Theorem~V of~\cite{HoldenFive2026} also does
+not apply. The endpoints are dense, and the vanishing two-minor
+has four positive entries, so they are neither tridiagonal nor
+almost strictly sign regular. Finally, their first four
+signature signs $(+,+,-,+)$ do not occur in the eight
+period-four families listed in~\cite{HassunehAdmGarloff2025};
+changing the final sign of a five-dimensional signature does
+not alter this exclusion.
+
+The formulas~\eqref{eq:seed}--\eqref{eq:example-box} specify
+the matrices exactly without rounded entries. The accompanying
+standard-library rational verification program checks the seed,
+both checker vertices, the zero pattern, and all sixteen
+ordinary vertices of this box. At each of those sixteen
+vertices, every signed minor is nonnegative and the signed
+determinant is positive. Multiaffine interpolation therefore
+also gives an independent finite verification of this
+particular box. This finite calculation is an illustration;
+the general theorem is established by the preceding proof.
+\end{example}
+
+\section{Scope and certification cost}\label{sec:scope}
+
+Theorem~\ref{thm:main} concerns real square boxes with independent
+scalar entry ranges and nonsingular endpoints of one prescribed
+signature. It treats every dimension, every such signature, and
+all allowable patterns of zero proper minors and fixed entries.
+The rationality of the examples imposes no restriction on the
+theorem. No perturbation that makes the proper minors strict
+is required.
+
+The result includes the usual two-vertex interval conclusion
+for the nonsingular totally nonnegative, strictly sign-regular,
+and special-signature classes discussed in the introduction.
+It does not assert every stronger auxiliary conclusion of
+those papers, such as preservation of a whole zero/nonzero
+minor pattern. It also does not replace their results for
+singular or rectangular matrices under additional hypotheses.
+Example~\ref{ex:singular} shows that nonsingularity cannot be
+dropped from the general two-vertex statement.
+
+The equivalence gives a reduction in the number of matrices
+whose nonsingular sign regularity must be certified: two
+checker vertices suffice for the entire square box. Checking
+that a given endpoint has the required signs is a separate
+recognition problem. An arithmetic or bit-complexity claim
+requires a specified endpoint-testing algorithm and a cost
+analysis; a measured computational speedup requires an
+implementation and comparison. Neither follows from the
+vertex count alone. The present result is the exact
+necessary-and-sufficient certification principle.
+
+\section*{Acknowledgements}
+[Acknowledgements to be decided]
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+\end{document}

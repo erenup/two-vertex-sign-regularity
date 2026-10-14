@@ -1,0 +1,50 @@
+{
+  "check_fekete_and_corners.py": [
+    {
+      "name": "fekete-sign",
+      "stderr": "FAIL: deliberately reversed Fekete term sign\n"
+    },
+    {
+      "name": "corner-sign",
+      "stderr": "FAIL: deliberately reversed corner sign\n"
+    },
+    {
+      "name": "wrong-signature",
+      "stderr": "FAIL: wrong minor sign: order=4 rows=(0, 1, 2, 3) columns=(0, 1, 2, 3)\n"
+    },
+    {
+      "name": "singular-endpoint",
+      "stderr": "FAIL: singular endpoint\n"
+    },
+    {
+      "name": "reversed-checker-order",
+      "stderr": "FAIL: endpoints are not in the claimed checker order\n"
+    },
+    {
+      "name": "bad-endpoint-entry",
+      "stderr": "FAIL: wrong minor sign: order=1 rows=(0,) columns=(4,)\n"
+    }
+  ],
+  "check_schur_and_rank.py": [
+    {
+      "name": "missing_insertion_sign",
+      "stderr": "signed Schur minor identity failed\n"
+    },
+    {
+      "name": "wrong_rank",
+      "stderr": "incorrect rank claim\n"
+    },
+    {
+      "name": "wrong_signature",
+      "stderr": "incorrect signed minor\n"
+    },
+    {
+      "name": "singular",
+      "stderr": "singular sign-regular fixture\n"
+    },
+    {
+      "name": "all_ones",
+      "stderr": "singular sign-regular fixture\n"
+    }
+  ]
+}
