@@ -35,4 +35,5 @@ The five-dimensional example is checked at both checker vertices and
 all sixteen ordinary vertices. The finite examples illustrate the theorem;
 the uniform theorem has a [complete Lean proof](../lean/IV01/Statement.lean).
 
-The manuscript [license](LICENSE) is TBD.
+All files in this directory, including the manuscript source and PDF, are
+licensed under [CC BY-SA 4.0](LICENSE).

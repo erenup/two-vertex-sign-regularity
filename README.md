@@ -114,7 +114,8 @@ The [paper guide](paper/README.md) gives the LaTeX build command.
 ## License and citation
 
 Files outside `paper/` are available under the [MIT license](LICENSE).
-The [paper license](paper/LICENSE) is TBD.
+The files in `paper/`, including the manuscript source and PDF, are licensed
+under [CC BY-SA 4.0](paper/LICENSE).
 Citation information is in [CITATION.cff](CITATION.cff).
 
 ## Acknowledgements

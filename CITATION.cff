@@ -20,9 +20,12 @@ abstract: >-
   Two checker vertices certify nonsingular sign regularity of an entire
   real square entrywise matrix interval, in every positive dimension
   and for every signature. Includes the written proof, a complete Lean
-  proof, and exact supporting checks. The manuscript license is TBD.
+  proof, and exact supporting checks. Files outside paper/ are licensed under
+  MIT; files in paper/, including the manuscript source and PDF, are licensed
+  under CC BY-SA 4.0.
 preferred-citation:
   type: unpublished
+  license: CC-BY-SA-4.0
   title: "Two-vertex certification of nonsingular sign-regular matrix intervals"
   authors:
     - given-names: "Wenqi"
