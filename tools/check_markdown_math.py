@@ -6,9 +6,11 @@ The same command with -O must give the same result. --root PATH checks another
 Git worktree without writing to it. Only tracked .md files are inspected.
 
 The macro blacklist, ambiguous norm bars, legacy backslash math delimiters,
-and environment allowlist apply everywhere, including code examples. Inline
-raw < > & checks apply only inside ordinary $...$, excluding code spans,
-fenced blocks, $$...$$ displays and GitHub's protected $`...`$ inline form.
+and environment allowlist apply everywhere, including code examples.
+Ordinary $...$ and $$...$$ reject backslash-escaped ASCII punctuation and
+raw < > & _ * ` characters, which Markdown can consume before math rendering.
+Use GitHub's protected $`...`$ inline form or fenced math blocks for those
+formulas. These Markdown checks exclude code spans and fenced blocks.
 Literal dollars outside code must be escaped. The environment allowlist is a
 conservative subset of MathJax's matrix/AMS environments. This is a static
 regression guard, not a complete TeX/Markdown parser or a live rendering test.
@@ -18,6 +20,7 @@ import argparse
 from bisect import bisect_right
 from pathlib import Path
 import re
+import string
 import subprocess
 import sys
 
@@ -36,6 +39,8 @@ cases aligned alignedat gathered split
 COMMAND = re.compile(r"\\([A-Za-z]+)")
 ENVIRONMENT = re.compile(r"\\(?:begin|end)\s*\{([^{}]*)\}")
 FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})([^\n]*)$", re.MULTILINE)
+MARKDOWN_ESCAPABLE = frozenset(string.punctuation)
+RAW_MATH_HAZARDS = frozenset("<>&_*`")
 
 
 def blank(text):
@@ -90,7 +95,11 @@ def findings(text):
     mode = None
     start = 0
     while i < len(masked):
-        if masked[i] == "\\":
+        if masked[i] == "\\" and mode != "protected":
+            if (mode in ("inline", "display") and i + 1 < len(masked)
+                    and masked[i + 1] in MARKDOWN_ESCAPABLE):
+                hit(i, "Markdown-escapable sequence in " + mode + " math: "
+                    + masked[i:i + 2])
             i += 2
             continue
         if mode == "protected" and masked.startswith("`$", i):
@@ -103,8 +112,8 @@ def findings(text):
             mode = None
             i += 1
         elif mode is not None:
-            if mode == "inline" and masked[i] in "<>&":
-                hit(i, "raw inline character: " + masked[i])
+            if mode in ("inline", "display") and masked[i] in RAW_MATH_HAZARDS:
+                hit(i, "raw " + mode + " character: " + masked[i])
             i += 1
         elif masked.startswith("$`", i):
             start, mode, i = i, "protected", i + 2
@@ -126,6 +135,17 @@ def findings(text):
 def self_check():
     """Small rejection controls run on every invocation, including under -O."""
     bad = [("$\\" + name + "{x}$", "disallowed macro") for name in sorted(DISALLOWED)]
+    for delimiter in ("$", "$$"):
+        bad += [(delimiter + "a\\" + char + "b" + delimiter,
+                 "Markdown-escapable sequence") for char in sorted(MARKDOWN_ESCAPABLE)]
+        bad += [(delimiter + "a" + char + "b" + delimiter,
+                 "raw " + ("inline" if delimiter == "$" else "display"))
+                for char in sorted(RAW_MATH_HAZARDS)]
+    cases = (
+        r"A^-_{ij}=\begin{cases}L_{ij},&i+j\text{ even},\\U_{ij},&i+j\text{ odd},\end{cases}"
+        "\n\\qquad\n"
+        r"A^+_{ij}=\begin{cases}U_{ij},&i+j\text{ even},\\L_{ij},&i+j\text{ odd}.\end{cases}"
+    )
     bad += [
         (r"$\|T\|_2$", "ambiguous norm"),
         (r"\(x\)", "legacy math delimiter"),
@@ -135,16 +155,33 @@ def self_check():
         ("$a&b$", "raw inline"), ("$a\n<b$", "raw inline"),
         ("`$ok$` $a<b$", "raw inline"),
         ("```text\n$ignored$\n```\n$a<b$", "raw inline"),
+        ("$$\n" + cases + "\n$$", "Markdown-escapable sequence in display"),
+        ("$" + cases + "$", "Markdown-escapable sequence in inline"),
+        ("~~~text\n$ignored$\n~~~\n$$a_b$$", "raw display"),
+        ("````text\n```\n$ignored$\n````\n$a_b$", "raw inline"),
+        ("`$a_b$` $c_d$", "raw inline"),
+        ("$`a_b`$ $c_d$", "raw inline"),
+        ("$`a\\`$ $c_d$", "raw inline"),
         ("$x", "unclosed"), ("$$x", "unclosed"), ("$`x", "unclosed"),
     ]
     good = [
-        r"$\mathrm{diag}(1,2)$ and $\lVert T\rVert_2\leq1$",
-        r"$0\lt\delta\lt1/2$; $a\gt b$; $a\&b$; \$5",
-        "$`a<b & b>c`$", "$$a<b & b>c$$", "```math\na<b\n```",
+        r"$\mathrm{diag}(1,2)$ and $`\lVert T\rVert_2\leq1`$",
+        r"$0\lt\delta\lt1/2$; $a\gt b$; $`a\&b`$; \$5",
+        "$`a<b & b>c`$", "$$a+b=c$$", "```math\na<b\n```",
         "`$a<b$` and `` `$a>b$` ``", "```sh\n$a<b$\n```",
         "~~~text\n$a&b$\n~~~", "plain a<b, a>b & <br>",
-        r"$$\begin{aligned}a&=b\\c&=d\end{aligned}$$",
-        r"$$\begin{pmatrix}1&0\\0&1\end{pmatrix}$$",
+        "```math\n" + cases + "\n```",
+        "$`" + cases + "`$",
+        r"$`\{a_b,a*b\}\,\!\_\*\\c`$",
+        "```math\n" + r"\{a_b,a*b\}\,\!\_\*\\c" + "\n```",
+        "$`a\\`$",
+        "`$a_b$` and `` `$a*b$` ``",
+        "   ```math\na_b * c & d < e > f\n   ```",
+        "````text\n```\n$a_b$\n````",
+        "~~~text\n```\n$a_b$\n~~~",
+        "```math\na_b * c & d < e > f",
+        "```math\n" + r"\begin{aligned}a&=b\\c&=d\end{aligned}" + "\n```",
+        "```math\n" + r"\begin{pmatrix}1&0\\0&1\end{pmatrix}" + "\n```",
     ]
     for text, expected in bad:
         if not any(expected in message for _, message in findings(text)):

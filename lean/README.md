@@ -2,9 +2,9 @@
 
 [`IV01.twoCheckerVertices`](IV01/Statement.lean) proves the theorem in every
 positive dimension. Let $L$ and $U$ be arbitrary real square matrices with
-$L\le U$ entrywise, and let $\varepsilon_k\in\{-1,1\}$ for every minor order.
+$L\le U$ entrywise, and let $`\varepsilon_k\in\{-1,1\}`$ for every minor order.
 If both checker vertices have nonzero determinant and all increasing-index
-minors satisfy $\varepsilon_k\det M[I,J]\ge0$, then every matrix in the
+minors satisfy $`\varepsilon_k\det M[I,J]\ge0`$, then every matrix in the
 entrywise interval has those same properties. Proper minors may vanish.
 
 The [definitions](IV01/Definitions.lean) use `Matrix (Fin n) (Fin n) ℝ`,

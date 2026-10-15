@@ -14,24 +14,24 @@ affirmatively, including arbitrary fixed entries and vanishing proper minors.
 
 ## Main theorem
 
-Let $n\geq1$, let $\epsilon\in\{-1,1\}^n$, and let
+Let $n\geq1$, let $`\epsilon\in\{-1,1\}^n`$, and let
 $L,U\in\mathbb R^{n\times n}$ satisfy $L\leq U$ entrywise.
 A matrix $X$ is nonsingular sign regular with signature $\epsilon$ when
 $\det X\ne0$ and
 
-$$
+```math
 \epsilon_k\det X[I,J]\geq0
 \qquad (1\leq k\leq n,\quad |I|=|J|=k),
-$$
+```
 
 for every pair of increasing row and column index sets. Define the two
 checker vertices, using one-based indices, by
 
-$$
+```math
 A^-_{ij}=\begin{cases}L_{ij},&i+j\text{ even},\\U_{ij},&i+j\text{ odd},\end{cases}
 \qquad
 A^+_{ij}=\begin{cases}U_{ij},&i+j\text{ even},\\L_{ij},&i+j\text{ odd}.\end{cases}
-$$
+```
 
 Then every real $X$ with $L\leq X\leq U$ is nonsingular sign regular
 with signature $\epsilon$ **if and only if** both $A^-$ and $A^+$ have
