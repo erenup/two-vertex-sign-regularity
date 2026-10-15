@@ -1,6 +1,12 @@
 # Two-vertex certification of nonsingular sign-regular matrix intervals
 
-Authors: TBD
+Authors: Wenqi Zhu; Kai Zou; Ping Nie.
+
+Wenqi Zhu — Mathematical Institute, Woodstock Road, University of Oxford, Oxford, UK, OX2 6GG — wenqi.zhu@maths.ox.ac.uk
+
+Kai Zou — Mathematical & Engineering Sciences, King's College London, UK — kz@netmind.ai
+
+Ping Nie — David R. Cheriton School of Computer Science, University of Waterloo — ping.nie@uwaterloo.ca
 
 Read the [paper](paper/main.pdf) and its [LaTeX source](paper/main.tex).
 The theorem answers the [catalogue question](https://github.com/ajt60gaibb/OpenProblemsInNLA/blob/d49c11a1b2091547235e4779f7e067ed4b65774d/intervals-and-absolute-value-equations/IV-01/README.md)
@@ -109,7 +115,7 @@ The [paper guide](paper/README.md) gives the LaTeX build command.
 
 Files outside `paper/` are available under the [MIT license](LICENSE).
 The [paper license](paper/LICENSE) is TBD.
-Author information is TBD in [CITATION.cff](CITATION.cff).
+Citation information is in [CITATION.cff](CITATION.cff).
 
 ## Acknowledgements
 

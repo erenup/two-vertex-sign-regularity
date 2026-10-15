@@ -1,6 +1,12 @@
 # Two-vertex certification of nonsingular sign-regular matrix intervals
 
-Authors: TBD
+Authors: Wenqi Zhu; Kai Zou; Ping Nie.
+
+Wenqi Zhu — Mathematical Institute, Woodstock Road, University of Oxford, Oxford, UK, OX2 6GG — wenqi.zhu@maths.ox.ac.uk
+
+Kai Zou — Mathematical & Engineering Sciences, King's College London, UK — kz@netmind.ai
+
+Ping Nie — David R. Cheriton School of Computer Science, University of Waterloo — ping.nie@uwaterloo.ca
 
 The [paper](main.pdf) proves Theorem 1.1 for every positive integer
 dimension and every signature. A real square entrywise matrix box
@@ -17,8 +23,7 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=bu
 
 The rebuilt PDF is `build/ci/main.pdf`. The included `main.pdf` has the
 same mathematical content. Standard TeX Live packages, including `lmodern`
-and TikZ, suffice. The author placeholder in the source and PDF is
-`[Authors to be decided]`.
+and TikZ, suffice. The source and PDF list the authors above.
 
 [check_examples.py](check_examples.py) checks all four examples with
 standard-library rational arithmetic. From the repository root, the

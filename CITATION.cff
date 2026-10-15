@@ -1,12 +1,39 @@
 cff-version: 1.2.0
-message: "Author information is TBD."
+message: "Please cite the manuscript using the preferred citation below."
 type: software
 title: "Two-vertex certification of nonsingular sign-regular matrix intervals"
 authors:
-  - family-names: "TBD"
+  - given-names: "Wenqi"
+    family-names: "Zhu"
+    affiliation: "Mathematical Institute, Woodstock Road, University of Oxford, Oxford, UK, OX2 6GG"
+    email: "wenqi.zhu@maths.ox.ac.uk"
+  - given-names: "Kai"
+    family-names: "Zou"
+    affiliation: "Mathematical & Engineering Sciences, King's College London, UK"
+    email: "kz@netmind.ai"
+  - given-names: "Ping"
+    family-names: "Nie"
+    affiliation: "David R. Cheriton School of Computer Science, University of Waterloo"
+    email: "ping.nie@uwaterloo.ca"
 license: MIT
 abstract: >-
   Two checker vertices certify nonsingular sign regularity of an entire
   real square entrywise matrix interval, in every positive dimension
   and for every signature. Includes the written proof, a complete Lean
   proof, and exact supporting checks. The manuscript license is TBD.
+preferred-citation:
+  type: unpublished
+  title: "Two-vertex certification of nonsingular sign-regular matrix intervals"
+  authors:
+    - given-names: "Wenqi"
+      family-names: "Zhu"
+      affiliation: "Mathematical Institute, Woodstock Road, University of Oxford, Oxford, UK, OX2 6GG"
+      email: "wenqi.zhu@maths.ox.ac.uk"
+    - given-names: "Kai"
+      family-names: "Zou"
+      affiliation: "Mathematical & Engineering Sciences, King's College London, UK"
+      email: "kz@netmind.ai"
+    - given-names: "Ping"
+      family-names: "Nie"
+      affiliation: "David R. Cheriton School of Computer Science, University of Waterloo"
+      email: "ping.nie@uwaterloo.ca"
