@@ -1,6 +1,6 @@
 # Verification
 
-All recorded commands completed on 2026-10-14. Python checks use only the
+The formal verification completed on 2026-10-14. Python checks use only the
 standard library; the mathematical programs use exact integer or rational
 arithmetic. The full real-matrix theorem is proved by the Lean declaration
 `IV01.twoCheckerVertices`. The finite programs provide supporting checks
@@ -143,10 +143,10 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=bu
 
 This built 19 pages with no unresolved references or citations and no
 overfull boxes. The included `paper/main.pdf` has SHA256
-`5613667abfdcc82c047eb51c7744538ade60c0bc8a4b9bdf6e12b255acd6ad7d`.
+`77ad617331d3b1d6268169c7131afd67d716b7d14c18cfc1642355c680199645`.
 The complete extracted text of the included and rebuilt PDFs is identical;
 its SHA256 under `pdftotext -layout` is
-`88c7be6b4dbf073535ed79ddd7829f262ae7106a2c747e126994bad8b0387ca2`.
+`944945488364f28a0b555ff130a659c549d0cbd2c0325459f00eaf1dd5384432`.
 PDF container metadata may differ between builds.
 
 From the repository root:
