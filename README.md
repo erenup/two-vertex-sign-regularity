@@ -9,6 +9,7 @@ Kai Zou — Mathematical & Engineering Sciences, King's College London, UK — k
 Ping Nie — David R. Cheriton School of Computer Science, University of Waterloo — ping.nie@uwaterloo.ca
 
 Read the [paper](paper/main.pdf) and its [LaTeX source](paper/main.tex).
+A revised version of the paper is in [paper-v2/](paper-v2/).
 The theorem answers the [catalogue question](https://github.com/ajt60gaibb/OpenProblemsInNLA/blob/d49c11a1b2091547235e4779f7e067ed4b65774d/intervals-and-absolute-value-equations/IV-01/README.md)
 affirmatively, including arbitrary fixed entries and vanishing proper minors.
 
@@ -120,4 +121,4 @@ Citation information is in [CITATION.cff](CITATION.cff).
 
 ## Acknowledgements
 
-TBD.
+We thank [NetMind.AI](https://www.netmind.ai/) and [AI4ALPHA](https://www.ai4alpha.ca/) for their support of this project. The research of Wenqi Zhu was also supported by the Engineering and Physical Sciences Research Council under grant EP/Y028872/1, *Mathematical Foundations of Intelligence: An "Erlangen Programme" for AI*.
