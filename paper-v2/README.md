@@ -1,6 +1,6 @@
 # Paper v2: Two Vertices Certify a Whole Interval of Nonsingular Sign-Regular Matrices
 
-Authors: Wenqi Zhu; Kai Zou; Ping Nie.
+Authors: Wenqi Zhu; Jürgen Garloff; Mohammad Adm; Kai Zou; Ping Nie.
 
 [main.pdf](main.pdf) is a revised exposition of Theorem 1.1 of the
 [paper](../paper/main.pdf), organized as a six-step proof of the

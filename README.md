@@ -1,8 +1,12 @@
 # Two-vertex certification of nonsingular sign-regular matrix intervals
 
-Authors: Wenqi Zhu; Kai Zou; Ping Nie.
+Authors: Wenqi Zhu; Jürgen Garloff; Mohammad Adm; Kai Zou; Ping Nie.
 
 Wenqi Zhu — Mathematical Institute, Woodstock Road, University of Oxford, Oxford, UK, OX2 6GG — wenqi.zhu@maths.ox.ac.uk
+
+Jürgen Garloff — HTWG Konstanz – University of Applied Sciences, Faculty of Computer Science, Konstanz, Germany — garloff@htwg-konstanz.de
+
+Mohammad Adm — Department of Applied Mathematics and Physics, Palestine Polytechnic University, Hebron, Palestine — moh_95@ppu.edu
 
 Kai Zou — Mathematical & Engineering Sciences, King's College London, UK — kz@netmind.ai
 
@@ -10,6 +14,7 @@ Ping Nie — David R. Cheriton School of Computer Science, University of Waterlo
 
 Read the [paper](paper/main.pdf) and its [LaTeX source](paper/main.tex).
 A revised version of the paper is in [paper-v2/](paper-v2/).
+The first version in [paper/](paper/) lists Wenqi Zhu, Kai Zou and Ping Nie.
 The theorem answers the [catalogue question](https://github.com/ajt60gaibb/OpenProblemsInNLA/blob/d49c11a1b2091547235e4779f7e067ed4b65774d/intervals-and-absolute-value-equations/IV-01/README.md)
 affirmatively, including arbitrary fixed entries and vanishing proper minors.
 
